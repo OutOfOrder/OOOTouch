@@ -10,11 +10,12 @@
 
 #import "SettingsManager.h"
 
-@interface SettingsViewController : UITableViewController {
-    SettingsManager *_settings;
+@interface SettingsViewController : UITableViewController <UITextFieldDelegate> {
+    SettingsManager *_settingsManager;
     NSDictionary *_config;
     NSArray *_allitems, *_groups;
     NSPredicate *_predicate;
+    NSUserDefaults *_settings;
 }
 
 /** Internal properties for lazy loading */

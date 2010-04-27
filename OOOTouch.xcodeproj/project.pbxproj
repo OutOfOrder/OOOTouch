@@ -19,7 +19,25 @@
 		DBE6A181116D95F4001A029E /* SettingsTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE6A17F116D95F4001A029E /* SettingsTextCell.m */; };
 		DBE6A1F4116E2694001A029E /* SettingsValueTable.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE6A1F2116E2694001A029E /* SettingsValueTable.h */; };
 		DBE6A1F5116E2694001A029E /* SettingsValueTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE6A1F3116E2694001A029E /* SettingsValueTable.m */; };
+		DBEA41631184BFFB00ECA462 /* libOOOTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libOOOTouch.a */; };
+		DBEA41741184C06000ECA462 /* OOOTouchDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */; };
+		DBEA417A1184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEA41791184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m */; };
+		DBEA41A311850FF500ECA462 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEA41A211850FF500ECA462 /* UIKit.framework */; };
+		DBEA41F31185101700ECA462 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEA41F21185101700ECA462 /* UIKit.framework */; };
+		DBEA41F91185103100ECA462 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEA41F81185103100ECA462 /* CoreGraphics.framework */; };
+		DBEA425F1185249100ECA462 /* Config.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBEA41531184BFD800ECA462 /* Config.bundle */; };
+		DBEA44921186951800ECA462 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEA44911186951800ECA462 /* main.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBEA41611184BFF700ECA462 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* OOOTouch */;
+			remoteInfo = OOOTouch;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AA747D9E0F9514B9006C5449 /* OOOTouch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOOTouch_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -35,6 +53,16 @@
 		DBE6A17F116D95F4001A029E /* SettingsTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTextCell.m; sourceTree = "<group>"; };
 		DBE6A1F2116E2694001A029E /* SettingsValueTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsValueTable.h; sourceTree = "<group>"; };
 		DBE6A1F3116E2694001A029E /* SettingsValueTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsValueTable.m; sourceTree = "<group>"; };
+		DBEA41531184BFD800ECA462 /* Config.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Config.bundle; sourceTree = "<group>"; };
+		DBEA415B1184BFF000ECA462 /* OOOTouchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OOOTouchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBEA415D1184BFF000ECA462 /* OOOTouchDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OOOTouchDemo-Info.plist"; sourceTree = "<group>"; };
+		DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OOOTouchDemo.xib; sourceTree = "<group>"; };
+		DBEA41781184C0AD00ECA462 /* OOOTouchDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOOTouchDemoAppDelegate.h; sourceTree = "<group>"; };
+		DBEA41791184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOOTouchDemoAppDelegate.m; sourceTree = "<group>"; };
+		DBEA41A211850FF500ECA462 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DBEA41F21185101700ECA462 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DBEA41F81185103100ECA462 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DBEA44911186951800ECA462 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +74,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBEA41591184BFF000ECA462 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEA41631184BFFB00ECA462 /* libOOOTouch.a in Frameworks */,
+				DBEA41A311850FF500ECA462 /* UIKit.framework in Frameworks */,
+				DBEA41F31185101700ECA462 /* UIKit.framework in Frameworks */,
+				DBEA41F91185103100ECA462 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libOOOTouch.a */,
+				DBEA415B1184BFF000ECA462 /* OOOTouchDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +100,7 @@
 		0867D691FE84028FC02AAC07 /* OOOTouch */ = {
 			isa = PBXGroup;
 			children = (
+				DBEA41481184B86900ECA462 /* Examples */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -72,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				DBEA41F21185101700ECA462 /* UIKit.framework */,
+				DBEA41F81185103100ECA462 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,6 +150,19 @@
 				DBE6A1F3116E2694001A029E /* SettingsValueTable.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		DBEA41481184B86900ECA462 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				DBEA44911186951800ECA462 /* main.m */,
+				DBEA41781184C0AD00ECA462 /* OOOTouchDemoAppDelegate.h */,
+				DBEA41791184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m */,
+				DBEA415D1184BFF000ECA462 /* OOOTouchDemo-Info.plist */,
+				DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */,
+				DBEA41531184BFD800ECA462 /* Config.bundle */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +201,24 @@
 			productReference = D2AAC07E0554694100DB518D /* libOOOTouch.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		DBEA415A1184BFF000ECA462 /* OOOTouchDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBEA41601184BFF100ECA462 /* Build configuration list for PBXNativeTarget "OOOTouchDemo" */;
+			buildPhases = (
+				DBEA41571184BFF000ECA462 /* Resources */,
+				DBEA41581184BFF000ECA462 /* Sources */,
+				DBEA41591184BFF000ECA462 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBEA41621184BFF700ECA462 /* PBXTargetDependency */,
+			);
+			name = OOOTouchDemo;
+			productName = "OOOTouch Demo";
+			productReference = DBEA415B1184BFF000ECA462 /* OOOTouchDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -159,9 +233,22 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* OOOTouch */,
+				DBEA415A1184BFF000ECA462 /* OOOTouchDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBEA41571184BFF000ECA462 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEA41741184C06000ECA462 /* OOOTouchDemo.xib in Resources */,
+				DBEA425F1185249100ECA462 /* Config.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
@@ -176,7 +263,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBEA41581184BFF000ECA462 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEA417A1184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m in Sources */,
+				DBEA44921186951800ECA462 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DBEA41621184BFF700ECA462 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* OOOTouch */;
+			targetProxy = DBEA41611184BFF700ECA462 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -238,6 +342,55 @@
 			};
 			name = Release;
 		};
+		DBEA415E1184BFF100ECA462 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Examples/OOOTouchDemo-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OOOTouchDemo;
+				SDKROOT = iphonesimulator3.1.3;
+			};
+			name = Debug;
+		};
+		DBEA415F1184BFF100ECA462 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Examples/OOOTouchDemo-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OOOTouchDemo;
+				SDKROOT = iphonesimulator3.1.3;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -255,6 +408,15 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBEA41601184BFF100ECA462 /* Build configuration list for PBXNativeTarget "OOOTouchDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBEA415E1184BFF100ECA462 /* Debug */,
+				DBEA415F1184BFF100ECA462 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

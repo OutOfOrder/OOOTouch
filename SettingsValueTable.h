@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SettingsManager.h"
 
 @interface SettingsValueTable : UITableViewController {
-    NSDictionary *_setting;
+    NSDictionary *_option;
+    SettingsManager *_settingsManager;
     NSArray *_values;
     NSArray *_titles;
     id _currentValue;
@@ -20,6 +21,6 @@
 @property (nonatomic,readonly,retain) NSArray *values;
 @property (nonatomic,readonly,retain) NSArray *titles;
 
-- (id)initWithSetting:(NSDictionary *)setting;
+- (id) initWithOption:(NSDictionary *)option forSettings:(SettingsManager *)settings;
 
 @end

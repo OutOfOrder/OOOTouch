@@ -10,14 +10,18 @@
 
 
 @interface SettingsManager : NSObject {
-    NSString *_file;
+    NSBundle *_bundle;
+    UIViewController *_tempVC;
 }
 - (NSDictionary *)config;
 
-- (id)initWithSettingsFile: (NSString *)plistfile;
+- (id)initWithSettingsBundle: (NSString *)plistfile;
 
-+ (SettingsManager *)settingsManagerWithSettingsFile: (NSString *)plistfile;
++ (SettingsManager *)settingsManagerWithSettingsBundle: (NSString *)plistfile;
+
+- (NSMutableDictionary *)defaultSettings;
 
 - (UIViewController *)settingsViewController;
+- (void) presentModelSettingsViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 @end

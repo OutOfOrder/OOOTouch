@@ -20,7 +20,6 @@
         _textField.returnKeyType = UIReturnKeyDone;
         // wish there was a constant for this.. this is "picked" from the existing controls
         _textField.textColor = [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1.0];
-        _textField.delegate = self;
 		[self.contentView addSubview:_textField];
         self.textLabel.clipsToBounds = NO;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -49,11 +48,6 @@
 {
     [_textField release];
     [super dealloc];
-}
-
-- (BOOL) textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return NO;
 }
 
 @end

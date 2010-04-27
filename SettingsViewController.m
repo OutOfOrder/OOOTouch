@@ -33,54 +33,36 @@ typedef NSUInteger SettingsType;
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self != nil) {
         [self setTitle:@"Settings"];
-        _settings = [settings retain];
+        _settingsManager = [settings retain];
         _config = nil;
         _predicate = nil;
         _groups = nil;
+        _settings = [NSUserDefaults standardUserDefaults];
     }
     return self;
 }
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-*/
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated
+{
+    NSIndexPath *cur = [self.tableView indexPathForSelectedRow];
+    if (cur != nil) {
+        NSInteger first = [self.allitems indexOfObjectIdenticalTo:[self.groups objectAtIndex:cur.section]];
+        NSDictionary *obj = [self.allitems objectAtIndex:first + 1 + cur.row];
+        NSString *type = [obj valueForKey:@"Type"];
+        if ([type isEqualToString:@"PSMultiValueSpecifier"]) {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:cur];
+            id _val = [[NSUserDefaults standardUserDefaults] objectForKey:[obj objectForKey:@"Key"]];
+            NSInteger idx = [[obj valueForKey:@"Values"] indexOfObject:_val];
+            if (idx != NSNotFound) {
+                [[cell detailTextLabel] setText:[[obj valueForKey:@"Titles"] objectAtIndex:idx]];
+                // This is to adjust width and left offset of detailTextLabel BEFORE we animate back
+                [cell setNeedsLayout];
+                [cell layoutIfNeeded];
+            }
+        }
+    }
     [super viewWillAppear:animated];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -121,17 +103,20 @@ typedef NSUInteger SettingsType;
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 break;
             case SettingsTypeToggle: {
-                UISlider *switchObj = [[UISwitch alloc] initWithFrame:CGRectZero];
+                UISwitch *switchObj = [[UISwitch alloc] initWithFrame:CGRectZero];
                 [cell setAccessoryView:switchObj];
+                [switchObj addTarget:self action:@selector(switchToggle:) forControlEvents:UIControlEventValueChanged];
                 [switchObj release];
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 }
                 break;
             case SettingsTypeSlider:
                 cell = [[SettingsSliderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+                [[(SettingsSliderCell *)cell slider] addTarget:self action:@selector(sliderChange:) forControlEvents:UIControlEventValueChanged];
                 break;
             case SettingsTypeText:
                 cell = [[SettingsTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+                [[(SettingsTextCell *)cell textField] setDelegate:self];
                 break;                
             case SettingsTypeTitle:
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -145,50 +130,110 @@ typedef NSUInteger SettingsType;
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"delagate %@",[tableView delegate]);
-    NSInteger first = [self.allitems indexOfObjectIdenticalTo:[self.groups objectAtIndex:indexPath.section]];
-    NSDictionary *obj = [self.allitems objectAtIndex:first + 1 + indexPath.row];
+    NSInteger grpIdx = [self.allitems indexOfObjectIdenticalTo:[self.groups objectAtIndex:indexPath.section]];
+    NSInteger settingIdx = grpIdx + 1 + indexPath.row;
+    NSDictionary *option = [self.allitems objectAtIndex:settingIdx];
 
     UITableViewCell *cell = nil;
-    NSString *defValueText;
+    NSString *valueText = @"";
+    id value = nil;
     /** @todo add Localization Support */
-    id defValue = [obj valueForKey:@"DefaultValue"];
-    if ([defValue respondsToSelector: @selector(stringValue)]) {
-        defValueText = [defValue stringValue];
-    } else {
-        defValueText = defValue;
+    NSString *key = [option valueForKey:@"Key"];
+    if (key) {
+        value = [_settings objectForKey:key];
+        if (value) {
+            if ([value respondsToSelector: @selector(stringValue)]) {
+                valueText = [value stringValue];
+            } else {
+                valueText = value;
+            }
+        }
     }
     
-    NSString *type = [obj valueForKey:@"Type"];
+    NSString *type = [option valueForKey:@"Type"];
     if ([type isEqualToString:@"PSMultiValueSpecifier"]) {
         cell = [self fetchCellForTableView:tableView ofType: SettingsTypeMulti withId:@"CellMulti"];
-        [[cell textLabel] setText:[obj valueForKey:@"Title"]];
-        NSInteger idx = [[obj valueForKey:@"Values"] indexOfObject:defValue];
+        [[cell textLabel] setText:[option valueForKey:@"Title"]];
+        NSInteger idx = [[option valueForKey:@"Values"] indexOfObject:value];
         if (idx != NSNotFound) {
-            [[cell detailTextLabel] setText:[[obj valueForKey:@"Titles"] objectAtIndex:idx]];            
+            [[cell detailTextLabel] setText:[[option valueForKey:@"Titles"] objectAtIndex:idx]];            
         }
         
     } else if ([type isEqualToString:@"PSTextFieldSpecifier"]) {
         cell = [self fetchCellForTableView:tableView ofType: SettingsTypeText withId:@"CellText"];
-        [[cell textLabel] setText:[obj valueForKey:@"Title"]];
-        [[(SettingsTextCell *)cell textField] setText:defValueText];
-        
+        [[cell textLabel] setText:[option valueForKey:@"Title"]];
+        UITextField *tf = [(SettingsTextCell *)cell textField];
+        tf.text = valueText;
+        tf.tag = settingIdx;
+        NSNumber *secure = [option objectForKey:@"IsSecure"];
+        tf.secureTextEntry = (secure && [secure boolValue]);
+        NSString *opt = [option objectForKey:@"KeyboardType"];
+        if (opt) {
+            if ([opt isEqualToString:@"NumbersAndPunctuation"]) {
+                tf.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            } else if ([opt isEqualToString:@"NumberPad"]) {
+                tf.keyboardType = UIKeyboardTypeNumberPad;
+            } else if ([opt isEqualToString:@"URL"]) {
+                tf.keyboardType = UIKeyboardTypeURL;
+            } else if ([opt isEqualToString:@"EmailAddress"]) {
+                tf.keyboardType = UIKeyboardTypeEmailAddress;
+            } else {
+                tf.keyboardType = UIKeyboardTypeAlphabet;
+            }
+        } else {
+            tf.keyboardType = UIKeyboardTypeAlphabet;
+        }
+        opt = [option objectForKey:@"AutocapitalizationType"];
+        if (opt) {
+            if ([opt isEqualToString:@"Sentences"]) {
+                tf.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+            } else if ([opt isEqualToString:@"Words"]) {
+                tf.autocapitalizationType = UITextAutocapitalizationTypeWords;
+            } else if ([opt isEqualToString:@"AllCharacters"]) {
+                tf.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+            } else {
+                tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            }            
+        } else {
+            tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        }
+        opt = [option objectForKey:@"AutocorrectionType"];
+        if (opt) {
+            if ([opt isEqualToString:@"No"]) {
+                tf.autocorrectionType = UITextAutocorrectionTypeNo;
+            } else if ([opt isEqualToString:@"Yes"]) {
+                tf.autocorrectionType = UITextAutocorrectionTypeYes;
+            } else {
+                tf.autocorrectionType = UITextAutocorrectionTypeDefault;
+            }            
+        } else {
+            tf.autocorrectionType = UITextAutocorrectionTypeDefault;
+        }
+
     } else if ([type isEqualToString:@"PSSliderSpecifier"]) {
         cell = [self fetchCellForTableView:tableView ofType: SettingsTypeSlider withId:@"CellSlider"];
+        UISlider *sl = (UISlider *)[(SettingsSliderCell *)cell slider];
+        sl.tag = settingIdx;
+        sl.value = [value floatValue];
+        sl.minimumValue = [[option objectForKey:@"MinimumValue"] floatValue];
+        sl.maximumValue = [[option objectForKey:@"MaximumValue"] floatValue];
         
     } else if ([type isEqualToString:@"PSToggleSwitchSpecifier"]) {
         cell = [self fetchCellForTableView:tableView ofType: SettingsTypeToggle withId:@"CellToggle"];
-        [[cell textLabel] setText:[obj valueForKey:@"Title"]];
+        [[cell textLabel] setText:[option valueForKey:@"Title"]];
+        UISwitch *sw = (UISwitch *)[cell accessoryView];
+        [sw setTag:settingIdx];
+        [sw setOn:[value boolValue]];
         
     } else if ([type isEqualToString:@"PSTitleValueSpecifier"]) {
         cell = [self fetchCellForTableView:tableView ofType: SettingsTypeTitle withId:@"CellTitle"];
-        [[cell textLabel] setText:[obj valueForKey:@"Title"]];
-        [[cell detailTextLabel] setText:[obj valueForKey:@"defaultValue"]];
-        [[cell detailTextLabel] setText:defValueText];
+        [[cell textLabel] setText:[option valueForKey:@"Title"]];
+        [[cell detailTextLabel] setText:[option valueForKey:@"defaultValue"]];
+        [[cell detailTextLabel] setText:valueText];
 
     } else if ([type isEqualToString:@"PSChildPaneSpecifier"]) {
         cell = [self fetchCellForTableView:tableView ofType: SettingsTypeChild withId:@"CellChild"];
-        [[cell textLabel] setText:[obj valueForKey:@"Title"]];
+        [[cell textLabel] setText:[option valueForKey:@"Title"]];
 
     } else {
         NSLog(@"Unknown Type %@ for %@",type, indexPath);
@@ -198,64 +243,58 @@ typedef NSUInteger SettingsType;
     return cell;
 }
 
+#pragma mark -
+#pragma mark Callbacks
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)switchToggle:(UISwitch *)switchObj
+{
+    NSDictionary *obj = [self.allitems objectAtIndex:switchObj.tag];
+    NSString *key = [obj objectForKey:@"Key"];
+    if (key) {
+        [_settings setBool:switchObj.on forKey:key];
+    }
 }
-*/
 
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)sliderChange:(UISlider *)sliderObj
+{
+    NSDictionary *obj = [self.allitems objectAtIndex:sliderObj.tag];
+    NSNumber *stepNum = [obj objectForKey:@"StepValue"];
+    if (stepNum) {
+        float step = [stepNum floatValue];
+        float min = [[obj objectForKey:@"MinimumValue"] floatValue];
+        sliderObj.value = (round((sliderObj.value - min) / step) * step) + min;
+    }
+    NSString *key = [obj objectForKey:@"Key"];
+    if (key) {
+        [_settings setFloat:sliderObj.value forKey:key];
+    }
 }
-*/
 
+#pragma mark Text Field Delegate
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    NSDictionary *obj = [self.allitems objectAtIndex:textField.tag];
+    NSString *key = [obj objectForKey:@"Key"];
+    if (key) {
+        [_settings setObject:textField.text forKey:key];
+    }    
 }
-*/
 
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
     NSInteger first = [self.allitems indexOfObjectIdenticalTo:[self.groups objectAtIndex:indexPath.section]];
     NSDictionary *obj = [self.allitems objectAtIndex:first + 1 + indexPath.row];
     NSString *type = [obj valueForKey:@"Type"];
     if ([type isEqualToString:@"PSMultiValueSpecifier"]) {
-        SettingsValueTable *viewController = [[SettingsValueTable alloc] initWithSetting:obj];
+        SettingsValueTable *viewController = [[SettingsValueTable alloc] initWithOption:obj forSettings:_settingsManager];
         [self.navigationController pushViewController:viewController animated:YES];
         [viewController release];
     }
@@ -266,7 +305,7 @@ typedef NSUInteger SettingsType;
 
 - (NSDictionary *)config {
     if (!_config) {
-        _config = [[_settings config] retain];
+        _config = [[_settingsManager config] retain];
     }
     return _config;
 }
@@ -321,7 +360,7 @@ typedef NSUInteger SettingsType;
     [_predicate release];
     [_groups release];
     [_config release];
-    [_settings release];
+    [_settingsManager release];
 
     [super dealloc];
 }
