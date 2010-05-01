@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SettingsManagerDelegate;
 
 @interface SettingsManager : NSObject {
     NSBundle *_bundle;
     UIViewController *_tempVC;
+    id _delegate;
 }
+@property (nonatomic,assign) id<SettingsManagerDelegate> delegate;
+
 - (NSDictionary *)config;
 
 - (id)initWithSettingsBundle: (NSString *)plistfile;
@@ -21,7 +25,16 @@
 
 - (NSMutableDictionary *)defaultSettings;
 
-- (UIViewController *)settingsViewController;
+- (void) pushSettingsViewControllerOnNavigationController:(UINavigationController *)nc animaed:(BOOL)animated;
 - (void) presentModelSettingsViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 @end
+
+@protocol SettingsManagerDelegate <NSObject>
+
+@optional
+
+- (void)settingsManager:(SettingsManager*)manager willShowSettingsViewController:(UIViewController *)viewController;
+
+@end
+

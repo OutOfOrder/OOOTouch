@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "SettingsManager.h"
 
-@interface OOOTouchDemoAppDelegate : NSObject <UIApplicationDelegate> {
+@interface OOOTouchDemoAppDelegate : NSObject <UIApplicationDelegate,SettingsManagerDelegate> {
     UIWindow *window;
     UIViewController *viewController;
 }

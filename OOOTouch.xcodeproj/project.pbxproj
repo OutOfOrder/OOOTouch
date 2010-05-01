@@ -22,7 +22,6 @@
 		DBEA41631184BFFB00ECA462 /* libOOOTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libOOOTouch.a */; };
 		DBEA41741184C06000ECA462 /* OOOTouchDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */; };
 		DBEA417A1184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEA41791184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m */; };
-		DBEA41A311850FF500ECA462 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEA41A211850FF500ECA462 /* UIKit.framework */; };
 		DBEA41F31185101700ECA462 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEA41F21185101700ECA462 /* UIKit.framework */; };
 		DBEA41F91185103100ECA462 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEA41F81185103100ECA462 /* CoreGraphics.framework */; };
 		DBEA425F1185249100ECA462 /* Config.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBEA41531184BFD800ECA462 /* Config.bundle */; };
@@ -34,7 +33,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* OOOTouch */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = OOOTouch;
 		};
 /* End PBXContainerItemProxy section */
@@ -59,7 +58,6 @@
 		DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OOOTouchDemo.xib; sourceTree = "<group>"; };
 		DBEA41781184C0AD00ECA462 /* OOOTouchDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOOTouchDemoAppDelegate.h; sourceTree = "<group>"; };
 		DBEA41791184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOOTouchDemoAppDelegate.m; sourceTree = "<group>"; };
-		DBEA41A211850FF500ECA462 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DBEA41F21185101700ECA462 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DBEA41F81185103100ECA462 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DBEA44911186951800ECA462 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBEA41631184BFFB00ECA462 /* libOOOTouch.a in Frameworks */,
-				DBEA41A311850FF500ECA462 /* UIKit.framework in Frameworks */,
 				DBEA41F31185101700ECA462 /* UIKit.framework in Frameworks */,
 				DBEA41F91185103100ECA462 /* CoreGraphics.framework in Frameworks */,
 			);

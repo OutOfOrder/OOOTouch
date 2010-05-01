@@ -12,6 +12,8 @@
 
 @implementation SettingsManager
 
+@synthesize delegate = _delegate;
+
 +(SettingsManager *) settingsManagerWithSettingsBundle:(NSString *)plistfile {
     return [[[SettingsManager alloc] initWithSettingsBundle: plistfile] autorelease];
 }
@@ -19,6 +21,7 @@
 - (id) initWithSettingsBundle:(NSString *)plistfile {
     self = [super init];
     if (self != nil) {
+        _delegate = nil;
         _bundle = [[NSBundle alloc] initWithPath:plistfile];
     }
     return self;
@@ -30,20 +33,31 @@
     return [NSDictionary dictionaryWithContentsOfFile:_file];
 }
 
-- (UIViewController *) settingsViewController {
+- (void) pushSettingsViewControllerOnNavigationController:(UINavigationController *)nc animaed:(BOOL)animated {
     SettingsViewController *settings = [[[SettingsViewController alloc] initWithSettings:self] autorelease];
-    return settings;
+    [nc pushViewController:settings animated:animated];
 }
 
 - (void) presentModelSettingsViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    UIViewController *vc = [self settingsViewController];
+    UIViewController *vc = [[[SettingsViewController alloc] initWithSettings:self] autorelease];
+    if (_tempVC) {
+        NSException *e = [NSException
+                          exceptionWithName:@"InvalidCallException"
+                          reason:@"Settings Dialog Already Visible"
+                          userInfo:nil];
+        @throw e;
+    }
     _tempVC = viewController;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" 
-                                                             style:UIBarButtonItemStylePlain 
-                                                            target:self 
-                                                            action:@selector(dismiss:)];
-    [[vc navigationItem] setRightBarButtonItem:item];
-    [item release];
+    if ([_delegate respondsToSelector:@selector(settingsManager:willShowSettingsViewController:)]) {
+        [_delegate settingsManager:self willShowSettingsViewController:vc];
+    } else {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" 
+                                                                 style:UIBarButtonItemStylePlain 
+                                                                target:self 
+                                                                action:@selector(dismiss:)];
+        [[vc navigationItem] setRightBarButtonItem:item];
+        [item release];
+    }
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [viewController presentModalViewController:nc animated:animated];
     [nc release];

@@ -101,6 +101,8 @@
 			<string>value_preference</string>
 			<key>DefaultValue</key>
 			<integer>3</integer>
+			<key>ItemSelectAction</key>
+			<string>MultiItemSelectValue:</string>
 			<key>Values</key>
 			<array>
 				<integer>1</integer>

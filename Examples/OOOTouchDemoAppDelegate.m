@@ -7,7 +7,6 @@
 //
 
 #import "OOOTouchDemoAppDelegate.h"
-#import "SettingsManager.h"
 
 @implementation OOOTouchDemoAppDelegate
 
@@ -71,8 +70,12 @@
 - (void) showSettings:(id)button {
     NSString *file = [[NSBundle mainBundle] pathForResource:@"Config" ofType:@"bundle"];
     SettingsManager *settings = [SettingsManager settingsManagerWithSettingsBundle:file];
+    [settings setDelegate:self];
     [settings presentModelSettingsViewController:viewController animated:YES];
 }
 
+- (void) MultiItemSelectValue:(NSNumber *)number {
+    NSLog(@"Selected %@",number);
+}
 @end
 

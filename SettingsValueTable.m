@@ -69,6 +69,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger curIdx = [self.values indexOfObjectIdenticalTo:_currentValue];
     if (curIdx != indexPath.row) {
+        SEL action = NSSelectorFromString([_option valueForKey:@"ItemSelectAction"]);
+        if (action && [_settingsManager.delegate respondsToSelector:action]) {
+            [_settingsManager.delegate 
+                    performSelector:action 
+                    withObject:[self.values objectAtIndex:indexPath.row]];
+        }
         // Unset old one
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:
                                     [NSIndexPath indexPathForRow:curIdx inSection:indexPath.section]];
