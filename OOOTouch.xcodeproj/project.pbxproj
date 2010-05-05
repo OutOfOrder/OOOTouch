@@ -17,7 +17,8 @@
 		DB2DED0A116D923400FF9DB8 /* SettingsSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DED08116D923400FF9DB8 /* SettingsSliderCell.m */; };
 		DB35A93F118CAA9A009DE97E /* OOOTouchDemo-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB35A93E118CAA9A009DE97E /* OOOTouchDemo-iPad.xib */; };
 		DB35A9E8118CBFE1009DE97E /* OOOTouchDemoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB35A9E7118CBFE1009DE97E /* OOOTouchDemoMainViewController.m */; };
-		DB35A9F1118CC1E7009DE97E /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB35A9F0118CC1E7009DE97E /* SettingsNavigationController.m */; };
+		DB440B2A1191291600D87538 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB35A9F0118CC1E7009DE97E /* SettingsNavigationController.m */; };
+		DB440B2B1191291600D87538 /* SettingsNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB35A9EF118CC1E7009DE97E /* SettingsNavigationController.h */; };
 		DBE6A180116D95F4001A029E /* SettingsTextCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE6A17E116D95F4001A029E /* SettingsTextCell.h */; };
 		DBE6A181116D95F4001A029E /* SettingsTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE6A17F116D95F4001A029E /* SettingsTextCell.m */; };
 		DBE6A1F4116E2694001A029E /* SettingsValueTable.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE6A1F2116E2694001A029E /* SettingsValueTable.h */; };
@@ -188,6 +189,7 @@
 				DB2DED09116D923400FF9DB8 /* SettingsSliderCell.h in Headers */,
 				DBE6A180116D95F4001A029E /* SettingsTextCell.h in Headers */,
 				DBE6A1F4116E2694001A029E /* SettingsValueTable.h in Headers */,
+				DB440B2B1191291600D87538 /* SettingsNavigationController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +273,7 @@
 				DB2DED0A116D923400FF9DB8 /* SettingsSliderCell.m in Sources */,
 				DBE6A181116D95F4001A029E /* SettingsTextCell.m in Sources */,
 				DBE6A1F5116E2694001A029E /* SettingsValueTable.m in Sources */,
+				DB440B2A1191291600D87538 /* SettingsNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +284,6 @@
 				DBEA417A1184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m in Sources */,
 				DBEA44921186951800ECA462 /* main.m in Sources */,
 				DB35A9E8118CBFE1009DE97E /* OOOTouchDemoMainViewController.m in Sources */,
-				DB35A9F1118CC1E7009DE97E /* SettingsNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
