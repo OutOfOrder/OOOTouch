@@ -16,6 +16,8 @@
 
 @implementation SettingsViewController
 
+@synthesize schema = _schema;
+
 enum {
     SettingsTypeUnknown,
     SettingsTypeToggle,
@@ -38,9 +40,19 @@ typedef NSUInteger SettingsType;
         _predicate = nil;
         _groups = nil;
         _settings = [NSUserDefaults standardUserDefaults];
+        _schema = nil;
     }
     return self;
 }
+
+- (id)initWithSettings:(SettingsManager *)settings andSchema:(NSString *)schema {
+    self = [self initWithSettings:settings];
+    if (self != nil) {
+        _schema = [schema copy];
+    }
+    return self;
+}
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -111,11 +123,11 @@ typedef NSUInteger SettingsType;
                 }
                 break;
             case SettingsTypeSlider:
-                cell = [[SettingsSliderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+                cell = [[[SettingsSliderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId] autorelease];
                 [[(SettingsSliderCell *)cell slider] addTarget:self action:@selector(sliderChange:) forControlEvents:UIControlEventValueChanged];
                 break;
             case SettingsTypeText:
-                cell = [[SettingsTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+                cell = [[[SettingsTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId] autorelease];
                 [[(SettingsTextCell *)cell textField] setDelegate:self];
                 break;                
             case SettingsTypeTitle:
@@ -253,6 +265,7 @@ typedef NSUInteger SettingsType;
     if (key) {
         [_settings setBool:switchObj.on forKey:key];
     }
+    [_settingsManager callValueChangeActionForOption:obj withValue:[NSNumber numberWithBool:switchObj.on]];
 }
 
 - (void)sliderChange:(UISlider *)sliderObj
@@ -265,8 +278,11 @@ typedef NSUInteger SettingsType;
         sliderObj.value = (round((sliderObj.value - min) / step) * step) + min;
     }
     NSString *key = [obj objectForKey:@"Key"];
-    if (key) {
-        [_settings setFloat:sliderObj.value forKey:key];
+    if (sliderObj.value != [_settings floatForKey:key]) {
+        if (key) {
+            [_settings setFloat:sliderObj.value forKey:key];
+        }
+        [_settingsManager callValueChangeActionForOption:obj withValue:[NSNumber numberWithFloat:sliderObj.value]];
     }
 }
 
@@ -278,7 +294,8 @@ typedef NSUInteger SettingsType;
     NSString *key = [obj objectForKey:@"Key"];
     if (key) {
         [_settings setObject:textField.text forKey:key];
-    }    
+    }
+    [_settingsManager callValueChangeActionForOption:obj withValue:textField.text];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
@@ -297,7 +314,12 @@ typedef NSUInteger SettingsType;
         SettingsValueTable *viewController = [[SettingsValueTable alloc] initWithOption:obj forSettings:_settingsManager];
         [self.navigationController pushViewController:viewController animated:YES];
         [viewController release];
+    } else if ([type isEqualToString:@"PSChildPaneSpecifier"]) {
+        SettingsViewController *vc = [[SettingsViewController alloc] initWithSettings:_settingsManager andSchema:[obj valueForKey:@"File"]];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
     }
+
 }
 
 #pragma mark -
@@ -305,7 +327,7 @@ typedef NSUInteger SettingsType;
 
 - (NSDictionary *)config {
     if (!_config) {
-        _config = [[_settingsManager config] retain];
+        _config = [[_settingsManager configForSchema:_schema] retain];
     }
     return _config;
 }
@@ -329,6 +351,17 @@ typedef NSUInteger SettingsType;
         _groups = [[self.allitems filteredArrayUsingPredicate:self.predicate] retain];
     }
     return _groups;
+}
+
+- (void) setSchema:(NSString *)schema {
+    [_schema release];
+    _schema = [schema copy];
+    [_config release];
+    _config = nil;
+    [_groups release];
+    _groups = nil;
+    _allitems = nil;
+    [self.tableView reloadData];
 }
 
 #pragma mark -

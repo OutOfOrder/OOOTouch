@@ -15,6 +15,9 @@
 		DB2DECDF116D6D2D00FF9DB8 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DECDD116D6D2D00FF9DB8 /* SettingsManager.m */; };
 		DB2DED09116D923400FF9DB8 /* SettingsSliderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB2DED07116D923400FF9DB8 /* SettingsSliderCell.h */; };
 		DB2DED0A116D923400FF9DB8 /* SettingsSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DED08116D923400FF9DB8 /* SettingsSliderCell.m */; };
+		DB35A93F118CAA9A009DE97E /* OOOTouchDemo-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB35A93E118CAA9A009DE97E /* OOOTouchDemo-iPad.xib */; };
+		DB35A9E8118CBFE1009DE97E /* OOOTouchDemoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB35A9E7118CBFE1009DE97E /* OOOTouchDemoMainViewController.m */; };
+		DB35A9F1118CC1E7009DE97E /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB35A9F0118CC1E7009DE97E /* SettingsNavigationController.m */; };
 		DBE6A180116D95F4001A029E /* SettingsTextCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE6A17E116D95F4001A029E /* SettingsTextCell.h */; };
 		DBE6A181116D95F4001A029E /* SettingsTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE6A17F116D95F4001A029E /* SettingsTextCell.m */; };
 		DBE6A1F4116E2694001A029E /* SettingsValueTable.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE6A1F2116E2694001A029E /* SettingsValueTable.h */; };
@@ -48,11 +51,16 @@
 		DB2DECDD116D6D2D00FF9DB8 /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsManager.m; sourceTree = "<group>"; };
 		DB2DED07116D923400FF9DB8 /* SettingsSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSliderCell.h; sourceTree = "<group>"; };
 		DB2DED08116D923400FF9DB8 /* SettingsSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSliderCell.m; sourceTree = "<group>"; };
+		DB35A93E118CAA9A009DE97E /* OOOTouchDemo-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "OOOTouchDemo-iPad.xib"; sourceTree = "<group>"; };
+		DB35A9E6118CBFE1009DE97E /* OOOTouchDemoMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOOTouchDemoMainViewController.h; sourceTree = "<group>"; };
+		DB35A9E7118CBFE1009DE97E /* OOOTouchDemoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OOOTouchDemoMainViewController.m; sourceTree = "<group>"; };
+		DB35A9EF118CC1E7009DE97E /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
+		DB35A9F0118CC1E7009DE97E /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
 		DBE6A17E116D95F4001A029E /* SettingsTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTextCell.h; sourceTree = "<group>"; };
 		DBE6A17F116D95F4001A029E /* SettingsTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTextCell.m; sourceTree = "<group>"; };
 		DBE6A1F2116E2694001A029E /* SettingsValueTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsValueTable.h; sourceTree = "<group>"; };
 		DBE6A1F3116E2694001A029E /* SettingsValueTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsValueTable.m; sourceTree = "<group>"; };
-		DBEA41531184BFD800ECA462 /* Config.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Config.bundle; sourceTree = "<group>"; };
+		DBEA41531184BFD800ECA462 /* Config.bundle */ = {isa = PBXFileReference; explicitFileType = "wrapper.plug-in"; path = Config.bundle; sourceTree = "<group>"; };
 		DBEA415B1184BFF000ECA462 /* OOOTouchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OOOTouchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBEA415D1184BFF000ECA462 /* OOOTouchDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OOOTouchDemo-Info.plist"; sourceTree = "<group>"; };
 		DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OOOTouchDemo.xib; sourceTree = "<group>"; };
@@ -145,6 +153,8 @@
 				DBE6A17F116D95F4001A029E /* SettingsTextCell.m */,
 				DBE6A1F2116E2694001A029E /* SettingsValueTable.h */,
 				DBE6A1F3116E2694001A029E /* SettingsValueTable.m */,
+				DB35A9EF118CC1E7009DE97E /* SettingsNavigationController.h */,
+				DB35A9F0118CC1E7009DE97E /* SettingsNavigationController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -157,7 +167,10 @@
 				DBEA41791184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m */,
 				DBEA415D1184BFF000ECA462 /* OOOTouchDemo-Info.plist */,
 				DBEA41731184C06000ECA462 /* OOOTouchDemo.xib */,
+				DB35A93E118CAA9A009DE97E /* OOOTouchDemo-iPad.xib */,
 				DBEA41531184BFD800ECA462 /* Config.bundle */,
+				DB35A9E6118CBFE1009DE97E /* OOOTouchDemoMainViewController.h */,
+				DB35A9E7118CBFE1009DE97E /* OOOTouchDemoMainViewController.m */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -242,6 +255,7 @@
 			files = (
 				DBEA41741184C06000ECA462 /* OOOTouchDemo.xib in Resources */,
 				DBEA425F1185249100ECA462 /* Config.bundle in Resources */,
+				DB35A93F118CAA9A009DE97E /* OOOTouchDemo-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +280,8 @@
 			files = (
 				DBEA417A1184C0AD00ECA462 /* OOOTouchDemoAppDelegate.m in Sources */,
 				DBEA44921186951800ECA462 /* main.m in Sources */,
+				DB35A9E8118CBFE1009DE97E /* OOOTouchDemoMainViewController.m in Sources */,
+				DB35A9F1118CC1E7009DE97E /* SettingsNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,9 +336,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -333,9 +351,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -343,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -359,7 +380,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = OOOTouchDemo;
-				SDKROOT = iphonesimulator3.1.3;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -367,7 +389,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -383,7 +406,10 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = OOOTouchDemo;
-				SDKROOT = iphonesimulator3.1.3;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				ZERO_LINK = NO;
 			};
 			name = Release;

@@ -71,11 +71,11 @@
     NSString *file = [[NSBundle mainBundle] pathForResource:@"Config" ofType:@"bundle"];
     SettingsManager *settings = [SettingsManager settingsManagerWithSettingsBundle:file];
     [settings setDelegate:self];
-    [settings presentModelSettingsViewController:viewController animated:YES];
+    [settings presentModelSettingsViewController:viewController animated:YES withStyle:UIModalTransitionStyleFlipHorizontal];
 }
 
-- (void) MultiItemSelectValue:(NSNumber *)number {
-    NSLog(@"Selected %@",number);
+- (void) ChangeOption:(NSDictionary *)option toValue:(id)value {
+    NSLog(@"Changed '%@' to '%@'",[option objectForKey:@"Key"], value);
 }
 @end
 

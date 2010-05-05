@@ -17,17 +17,22 @@
 }
 @property (nonatomic,assign) id<SettingsManagerDelegate> delegate;
 
++ (SettingsManager *)settingsManagerWithSettingsBundle:(NSString *)bundlefile;
+
+- (id)initWithSettingsBundle: (NSString *)bundlefile;
+
 - (NSDictionary *)config;
-
-- (id)initWithSettingsBundle: (NSString *)plistfile;
-
-+ (SettingsManager *)settingsManagerWithSettingsBundle: (NSString *)plistfile;
+- (NSDictionary *)configForSchema: (NSString *)schema;
 
 - (NSMutableDictionary *)defaultSettings;
 
-- (void) pushSettingsViewControllerOnNavigationController:(UINavigationController *)nc animaed:(BOOL)animated;
-- (void) presentModelSettingsViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (UIViewController *)settingsViewController;
 
+- (void) pushSettingsViewControllerOnNavigationController:(UINavigationController *)nc animaed:(BOOL)animated;
+- (void) presentModelSettingsViewController:(UIViewController *)viewController 
+                                   animated:(BOOL)animated  withStyle:(UIModalTransitionStyle)style;
+
+- (void)callValueChangeActionForOption: (NSDictionary *)option withValue: (id) value;
 @end
 
 @protocol SettingsManagerDelegate <NSObject>

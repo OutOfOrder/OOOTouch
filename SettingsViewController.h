@@ -16,7 +16,11 @@
     NSArray *_allitems, *_groups;
     NSPredicate *_predicate;
     NSUserDefaults *_settings;
+
+    NSString *_schema;
 }
+
+@property (nonatomic,copy) NSString *schema;
 
 /** Internal properties for lazy loading */
 @property (nonatomic,readonly,retain) NSDictionary *config;
@@ -24,7 +28,8 @@
 @property (nonatomic,readonly,retain) NSArray *groups;
 @property (nonatomic,readonly,retain) NSPredicate *predicate;
 
-
 - (id)initWithSettings:(SettingsManager *)settings;
+
+- (id)initWithSettings:(SettingsManager *)settings andSchema:(NSString *)schema;
 
 @end

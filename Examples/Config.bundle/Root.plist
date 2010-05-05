@@ -29,8 +29,12 @@
 			<string>None</string>
 			<key>AutocorrectionType</key>
 			<string>No</string>
+			<key>ValueChangeAction</key>
+			<string>ChangeOption:toValue:</string>
 		</dict>
 		<dict>
+			<key>ValueChangeAction</key>
+			<string>ChangeOption:toValue:</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
@@ -57,6 +61,8 @@
 			<string>Sliders</string>
 		</dict>
 		<dict>
+			<key>ValueChangeAction</key>
+			<string>ChangeOption:toValue:</string>
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
@@ -85,6 +91,8 @@
 			<integer>5</integer>
 			<key>StepValue</key>
 			<string>0.5</string>
+			<key>ValueChangeAction</key>
+			<string>ChangeOption:toValue:</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -101,8 +109,8 @@
 			<string>value_preference</string>
 			<key>DefaultValue</key>
 			<integer>3</integer>
-			<key>ItemSelectAction</key>
-			<string>MultiItemSelectValue:</string>
+			<key>ValueChangeAction</key>
+			<string>ChangeOption:toValue:</string>
 			<key>Values</key>
 			<array>
 				<integer>1</integer>
@@ -115,6 +123,14 @@
 				<string>Two</string>
 				<string>Three</string>
 			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Child Page</string>
+			<key>File</key>
+			<string>Child</string>
 		</dict>
 	</array>
 </dict>

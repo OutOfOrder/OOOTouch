@@ -18,5 +18,7 @@
 	<string>1.0</string>
 	<key>NSMainNibFile</key>
 	<string>OOOTouchDemo</string>
+	<key>NSMainNibFile~ipad</key>
+	<string>OOOTouchDemo-iPad</string>
 </dict>
 </plist>
