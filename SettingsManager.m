@@ -63,6 +63,8 @@
     if ([_delegate respondsToSelector:@selector(settingsManager:willShowSettingsViewController:)]) {
         [_delegate settingsManager:self willShowSettingsViewController:vc];
     } else {
+        [_tempVC retain];
+        [self retain];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" 
                                                                  style:UIBarButtonItemStylePlain 
                                                                 target:self 
@@ -86,7 +88,9 @@
 - (void) dismiss:(id)button
 {
     [_tempVC dismissModalViewControllerAnimated:YES];
+    [_tempVC release];
     _tempVC = nil;
+    [self release];
 }
 
 - (void)addSettingsToDictionary:(NSMutableDictionary *)dict forSchema:(NSString *)schema
